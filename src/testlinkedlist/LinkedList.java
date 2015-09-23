@@ -182,7 +182,7 @@ public class LinkedList<E> implements Iterable<E>
           }
        
           else {
-           Node<E> previousNode = getNode(index);
+           Node<E> previousNode = getNode(index -1);
            Node<E> nextNode = getNode(index);
            previousNode.next = new Node(element, nextNode);
           }
