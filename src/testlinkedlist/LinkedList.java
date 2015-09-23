@@ -95,9 +95,10 @@ public class LinkedList<E> implements Iterable<E>
         @Override
         public E next()
           {
-            if(nextElement.next != null){
+            if(hasNext()){
+                E data = nextElement.getData();
                 nextElement = nextElement.next;
-                return nextElement.getData();
+                return data;
             } else {
                 throw new NoSuchElementException();
             }
@@ -350,23 +351,17 @@ public class LinkedList<E> implements Iterable<E>
     @Override
     public String toString()
       {
-        String result = "[]";
-        try {
-            if(!this.isEmpty()){
-                result = "[ ";
-                LinkedListIterator<E> linkedListIterator = new LinkedListIterator(head);
-                while(linkedListIterator.hasNext()){
-
-                    result = result + ", " + linkedListIterator.next();
-                }
-
-                result = result + "]";
-                
-                return result;
-            } 
-        } catch (NoSuchElementException e){
-            
-        }
+          if(this.isEmpty()){
+              return "[]";
+          }
+          String result = "[";
+          for(int i = 0; i <= size - 1; i++){
+              result = result + this.getNode(i).getData();
+              if(i != size -1){
+                  result = result + ", ";
+              }
+          }
+        result = result + "]";
         return result;
       }
 
